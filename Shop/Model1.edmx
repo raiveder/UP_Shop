@@ -1,0 +1,727 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище practic20Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id_category" />
+          </Key>
+          <Property Name="Id_category" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Manufacturers">
+          <Key>
+            <PropertyRef Name="Id_manufacturer" />
+          </Key>
+          <Property Name="Id_manufacturer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+          <Property Name="OrderDeliveryDate" Type="date" Nullable="false" />
+          <Property Name="OrderPickupPoint" Type="int" Nullable="false" />
+          <Property Name="Client" Type="int" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="OrderStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="Product" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PointOfIssue">
+          <Key>
+            <PropertyRef Name="ID_Point" />
+          </Key>
+          <Property Name="ID_Point" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Build" Type="nvarchar" MaxLength="5" />
+          <Property Name="Code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductArticleNumber" />
+          </Key>
+          <Property Name="ProductArticleNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProductDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UnitOfMeasurement" Type="int" Nullable="false" />
+          <Property Name="ProductCost" Type="float" Nullable="false" />
+          <Property Name="ProductDiscountAmount" Type="float" />
+          <Property Name="ProductManufacturer" Type="int" Nullable="false" />
+          <Property Name="ProductSupplier" Type="int" Nullable="false" />
+          <Property Name="ProductCategory" Type="int" Nullable="false" />
+          <Property Name="ProductDiscount" Type="float" Nullable="false" />
+          <Property Name="ProductCount" Type="int" Nullable="false" />
+          <Property Name="ProductPhoto" Type="nvarchar(max)" />
+          <Property Name="ProductStatus" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="Id_status" />
+          </Key>
+          <Property Name="Id_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="Id_supplier" />
+          </Key>
+          <Property Name="Id_supplier" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Supplier" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnitsOfMeasurement">
+          <Key>
+            <PropertyRef Name="Id_unit" />
+          </Key>
+          <Property Name="Id_unit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserSurname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserPatronymic" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserLogin" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserPassword" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserRole" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__OrderProd__Order__403A8C7D">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderProduct">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderProd__Produ__412EB0B6">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductArticleNumber" />
+            </Principal>
+            <Dependent Role="OrderProduct">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__UserRole__398D8EEE">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_PointOfIssue">
+          <End Role="PointOfIssue" Type="Self.PointOfIssue" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PointOfIssue">
+              <PropertyRef Name="ID_Point" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="OrderPickupPoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Statuses">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="Id_status" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="OrderStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id_category" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Manufacturers">
+          <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturers">
+              <PropertyRef Name="Id_manufacturer" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductManufacturer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Suppliers">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="Id_supplier" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductSupplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_UnitsOfMeasurement">
+          <End Role="UnitsOfMeasurement" Type="Self.UnitsOfMeasurement" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitsOfMeasurement">
+              <PropertyRef Name="Id_unit" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="UnitOfMeasurement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище practic20ModelContainer">
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderProduct" EntityType="Self.OrderProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PointOfIssue" EntityType="Self.PointOfIssue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitsOfMeasurement" EntityType="Self.UnitsOfMeasurement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__OrderProd__Order__403A8C7D" Association="Self.FK__OrderProd__Order__403A8C7D">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderProduct" EntitySet="OrderProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderProd__Produ__412EB0B6" Association="Self.FK__OrderProd__Produ__412EB0B6">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderProduct" EntitySet="OrderProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__UserRole__398D8EEE" Association="Self.FK__User__UserRole__398D8EEE">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_PointOfIssue" Association="Self.FK_Order_PointOfIssue">
+            <End Role="PointOfIssue" EntitySet="PointOfIssue" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Statuses" Association="Self.FK_Order_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Categories" Association="Self.FK_Product_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Manufacturers" Association="Self.FK_Product_Manufacturers">
+            <End Role="Manufacturers" EntitySet="Manufacturers" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Suppliers" Association="Self.FK_Product_Suppliers">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_UnitsOfMeasurement" Association="Self.FK_Product_UnitsOfMeasurement">
+            <End Role="UnitsOfMeasurement" EntitySet="UnitsOfMeasurement" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="practic20Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PracticEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="practic20Model.Categories" />
+          <EntitySet Name="Manufacturers" EntityType="practic20Model.Manufacturers" />
+          <EntitySet Name="Order" EntityType="practic20Model.Order" />
+          <EntitySet Name="OrderProduct" EntityType="practic20Model.OrderProduct" />
+          <EntitySet Name="PointOfIssue" EntityType="practic20Model.PointOfIssue" />
+          <EntitySet Name="Product" EntityType="practic20Model.Product" />
+          <EntitySet Name="Role" EntityType="practic20Model.Role" />
+          <EntitySet Name="Statuses" EntityType="practic20Model.Statuses" />
+          <EntitySet Name="Suppliers" EntityType="practic20Model.Suppliers" />
+          <EntitySet Name="UnitsOfMeasurement" EntityType="practic20Model.UnitsOfMeasurement" />
+          <EntitySet Name="User" EntityType="practic20Model.User" />
+          <AssociationSet Name="FK_Product_Categories" Association="practic20Model.FK_Product_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Manufacturers" Association="practic20Model.FK_Product_Manufacturers">
+            <End Role="Manufacturers" EntitySet="Manufacturers" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderProd__Order__403A8C7D" Association="practic20Model.FK__OrderProd__Order__403A8C7D">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderProduct" EntitySet="OrderProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_PointOfIssue" Association="practic20Model.FK_Order_PointOfIssue">
+            <End Role="PointOfIssue" EntitySet="PointOfIssue" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Statuses" Association="practic20Model.FK_Order_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="practic20Model.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderProd__Produ__412EB0B6" Association="practic20Model.FK__OrderProd__Produ__412EB0B6">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderProduct" EntitySet="OrderProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Suppliers" Association="practic20Model.FK_Product_Suppliers">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_UnitsOfMeasurement" Association="practic20Model.FK_Product_UnitsOfMeasurement">
+            <End Role="UnitsOfMeasurement" EntitySet="UnitsOfMeasurement" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__UserRole__398D8EEE" Association="practic20Model.FK__User__UserRole__398D8EEE">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id_category" />
+          </Key>
+          <Property Name="Id_category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="practic20Model.FK_Product_Categories" FromRole="Categories" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Manufacturers">
+          <Key>
+            <PropertyRef Name="Id_manufacturer" />
+          </Key>
+          <Property Name="Id_manufacturer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Manufacturer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="practic20Model.FK_Product_Manufacturers" FromRole="Manufacturers" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OrderDeliveryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OrderPickupPoint" Type="Int32" Nullable="false" />
+          <Property Name="Client" Type="Int32" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="OrderStatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderProduct" Relationship="practic20Model.FK__OrderProd__Order__403A8C7D" FromRole="Order" ToRole="OrderProduct" />
+          <NavigationProperty Name="PointOfIssue" Relationship="practic20Model.FK_Order_PointOfIssue" FromRole="Order" ToRole="PointOfIssue" />
+          <NavigationProperty Name="Statuses" Relationship="practic20Model.FK_Order_Statuses" FromRole="Order" ToRole="Statuses" />
+          <NavigationProperty Name="User" Relationship="practic20Model.FK_Order_User" FromRole="Order" ToRole="User" />
+        </EntityType>
+        <EntityType Name="OrderProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="Product" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="practic20Model.FK__OrderProd__Order__403A8C7D" FromRole="OrderProduct" ToRole="Order" />
+          <NavigationProperty Name="Product1" Relationship="practic20Model.FK__OrderProd__Produ__412EB0B6" FromRole="OrderProduct" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="PointOfIssue">
+          <Key>
+            <PropertyRef Name="ID_Point" />
+          </Key>
+          <Property Name="ID_Point" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Build" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="practic20Model.FK_Order_PointOfIssue" FromRole="PointOfIssue" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductArticleNumber" />
+          </Key>
+          <Property Name="ProductArticleNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UnitOfMeasurement" Type="Int32" Nullable="false" />
+          <Property Name="ProductCost" Type="Double" Nullable="false" />
+          <Property Name="ProductDiscountAmount" Type="Double" />
+          <Property Name="ProductManufacturer" Type="Int32" Nullable="false" />
+          <Property Name="ProductSupplier" Type="Int32" Nullable="false" />
+          <Property Name="ProductCategory" Type="Int32" Nullable="false" />
+          <Property Name="ProductDiscount" Type="Double" Nullable="false" />
+          <Property Name="ProductCount" Type="Int32" Nullable="false" />
+          <Property Name="ProductPhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Categories" Relationship="practic20Model.FK_Product_Categories" FromRole="Product" ToRole="Categories" />
+          <NavigationProperty Name="Manufacturers" Relationship="practic20Model.FK_Product_Manufacturers" FromRole="Product" ToRole="Manufacturers" />
+          <NavigationProperty Name="OrderProduct" Relationship="practic20Model.FK__OrderProd__Produ__412EB0B6" FromRole="Product" ToRole="OrderProduct" />
+          <NavigationProperty Name="Suppliers" Relationship="practic20Model.FK_Product_Suppliers" FromRole="Product" ToRole="Suppliers" />
+          <NavigationProperty Name="UnitsOfMeasurement" Relationship="practic20Model.FK_Product_UnitsOfMeasurement" FromRole="Product" ToRole="UnitsOfMeasurement" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="practic20Model.FK__User__UserRole__398D8EEE" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="Id_status" />
+          </Key>
+          <Property Name="Id_status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order" Relationship="practic20Model.FK_Order_Statuses" FromRole="Statuses" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="Id_supplier" />
+          </Key>
+          <Property Name="Id_supplier" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Supplier" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="practic20Model.FK_Product_Suppliers" FromRole="Suppliers" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="UnitsOfMeasurement">
+          <Key>
+            <PropertyRef Name="Id_unit" />
+          </Key>
+          <Property Name="Id_unit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Unit" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="practic20Model.FK_Product_UnitsOfMeasurement" FromRole="UnitsOfMeasurement" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserSurname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserPatronymic" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="practic20Model.FK_Order_User" FromRole="User" ToRole="Order" />
+          <NavigationProperty Name="Role" Relationship="practic20Model.FK__User__UserRole__398D8EEE" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_Product_Categories">
+          <End Type="practic20Model.Categories" Role="Categories" Multiplicity="1" />
+          <End Type="practic20Model.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id_category" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Manufacturers">
+          <End Type="practic20Model.Manufacturers" Role="Manufacturers" Multiplicity="1" />
+          <End Type="practic20Model.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturers">
+              <PropertyRef Name="Id_manufacturer" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductManufacturer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderProd__Order__403A8C7D">
+          <End Type="practic20Model.Order" Role="Order" Multiplicity="1" />
+          <End Type="practic20Model.OrderProduct" Role="OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderProduct">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_PointOfIssue">
+          <End Type="practic20Model.PointOfIssue" Role="PointOfIssue" Multiplicity="1" />
+          <End Type="practic20Model.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PointOfIssue">
+              <PropertyRef Name="ID_Point" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="OrderPickupPoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Statuses">
+          <End Type="practic20Model.Statuses" Role="Statuses" Multiplicity="1" />
+          <End Type="practic20Model.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="Id_status" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="OrderStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Type="practic20Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="practic20Model.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderProd__Produ__412EB0B6">
+          <End Type="practic20Model.Product" Role="Product" Multiplicity="1" />
+          <End Type="practic20Model.OrderProduct" Role="OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductArticleNumber" />
+            </Principal>
+            <Dependent Role="OrderProduct">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Suppliers">
+          <End Type="practic20Model.Suppliers" Role="Suppliers" Multiplicity="1" />
+          <End Type="practic20Model.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="Id_supplier" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductSupplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_UnitsOfMeasurement">
+          <End Type="practic20Model.UnitsOfMeasurement" Role="UnitsOfMeasurement" Multiplicity="1" />
+          <End Type="practic20Model.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitsOfMeasurement">
+              <PropertyRef Name="Id_unit" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="UnitOfMeasurement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__UserRole__398D8EEE">
+          <End Type="practic20Model.Role" Role="Role" Multiplicity="1" />
+          <End Type="practic20Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище practic20ModelContainer" CdmEntityContainer="PracticEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="practic20Model.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Id_category" ColumnName="Id_category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manufacturers">
+            <EntityTypeMapping TypeName="practic20Model.Manufacturers">
+              <MappingFragment StoreEntitySet="Manufacturers">
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="Id_manufacturer" ColumnName="Id_manufacturer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="practic20Model.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="OrderPickupPoint" ColumnName="OrderPickupPoint" />
+                <ScalarProperty Name="OrderDeliveryDate" ColumnName="OrderDeliveryDate" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderProduct">
+            <EntityTypeMapping TypeName="practic20Model.OrderProduct">
+              <MappingFragment StoreEntitySet="OrderProduct">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PointOfIssue">
+            <EntityTypeMapping TypeName="practic20Model.PointOfIssue">
+              <MappingFragment StoreEntitySet="PointOfIssue">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Build" ColumnName="Build" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ID_Point" ColumnName="ID_Point" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="practic20Model.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductStatus" ColumnName="ProductStatus" />
+                <ScalarProperty Name="ProductPhoto" ColumnName="ProductPhoto" />
+                <ScalarProperty Name="ProductCount" ColumnName="ProductCount" />
+                <ScalarProperty Name="ProductDiscount" ColumnName="ProductDiscount" />
+                <ScalarProperty Name="ProductCategory" ColumnName="ProductCategory" />
+                <ScalarProperty Name="ProductSupplier" ColumnName="ProductSupplier" />
+                <ScalarProperty Name="ProductManufacturer" ColumnName="ProductManufacturer" />
+                <ScalarProperty Name="ProductDiscountAmount" ColumnName="ProductDiscountAmount" />
+                <ScalarProperty Name="ProductCost" ColumnName="ProductCost" />
+                <ScalarProperty Name="UnitOfMeasurement" ColumnName="UnitOfMeasurement" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductArticleNumber" ColumnName="ProductArticleNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="practic20Model.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statuses">
+            <EntityTypeMapping TypeName="practic20Model.Statuses">
+              <MappingFragment StoreEntitySet="Statuses">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Id_status" ColumnName="Id_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="practic20Model.Suppliers">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="Supplier" ColumnName="Supplier" />
+                <ScalarProperty Name="Id_supplier" ColumnName="Id_supplier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitsOfMeasurement">
+            <EntityTypeMapping TypeName="practic20Model.UnitsOfMeasurement">
+              <MappingFragment StoreEntitySet="UnitsOfMeasurement">
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Id_unit" ColumnName="Id_unit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="practic20Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+                <ScalarProperty Name="UserPatronymic" ColumnName="UserPatronymic" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserSurname" ColumnName="UserSurname" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
