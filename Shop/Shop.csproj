@@ -201,11 +201,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="SQL Data\Данные.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SQL Data\Create tables.sql" />
     <Resource Include="images\A346R4.jpg" />
     <Resource Include="images\A543T6.jpg" />
     <Resource Include="images\B730E2.jpg" />
