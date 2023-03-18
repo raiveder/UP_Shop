@@ -224,7 +224,7 @@ namespace Shop
 
             int y = 10;
 
-           
+
             gfx.DrawString("Заказ №" + orders[orders.Count - 1].OrderID + 1, fontHeader, XBrushes.Black, new XRect(10, y, page.Width, page.Height), XStringFormats.TopCenter);
             gfx.DrawString("Дата оформления заказа: " + DateTime.Now.Date.ToString("dd MMMM yyyy"), font, XBrushes.Black, new XRect(10, y += 50, page.Width, page.Height),
                 XStringFormats.TopLeft);
