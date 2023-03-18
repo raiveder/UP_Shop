@@ -10,12 +10,12 @@
         Title="ООО «Пиши-стирай»" Height="600" Width="1000" Icon="/Resources/icon.ico" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
+            <RowDefinition Height="100"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Margin="10">
-            <Image Source="Resources\logo.png" Height="130" HorizontalAlignment="Left"/>
+            <Image Source="Resources\logo.png" Height="80" HorizontalAlignment="Left"/>
             <TextBlock Text="ООО «Пиши-стирай»" FontSize="30" VerticalAlignment="Center" Margin="10"/>
         </StackPanel>
 

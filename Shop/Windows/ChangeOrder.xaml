@@ -7,9 +7,17 @@
         mc:Ignorable="d"
         Title="Изменение заказа" Height="350" Width="500" Icon="/Resources/icon.ico">
     <Grid>
-        <TextBlock Name="tbOrder" FontSize="25" FontWeight="DemiBold" HorizontalAlignment="Center" Margin="20"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="Изменение заказа" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="DemiBold"/>
+
+        <TextBlock Grid.Row="1" Name="tbOrder" FontSize="25" FontWeight="DemiBold" HorizontalAlignment="Center" Margin="20"/>
+
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                 <TextBlock Text="Дата доставки" FontSize="20" Margin="0 0 10 0"/>
                 <DatePicker Name="dpDate" FontSize="20" Width="150"/>

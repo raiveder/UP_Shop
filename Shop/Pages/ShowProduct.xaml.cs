@@ -81,13 +81,13 @@ namespace Shop
                 products = products.Where(x => x.ProductName.ToLower().Contains(tbFind.Text.ToLower())).ToList();
             }
 
+            lvProduct.ItemsSource = products;
+            tbCount.Text = products.Count + " из " + count;
+
             if (products.Count == 0)
             {
                 MessageBox.Show("Товаров с подходящим фильтром не найдено", "Товары", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-
-            lvProduct.ItemsSource = products;
-            tbCount.Text = products.Count + " из " + count;
         }
 
         private void MenuItemAdd_Click(object sender, RoutedEventArgs e)

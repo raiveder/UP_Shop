@@ -14,11 +14,14 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
             <RowDefinition/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Margin="10">
+        <TextBlock Grid.ColumnSpan="2" Text="Заказы" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="DemiBold"/>
+
+        <StackPanel Grid.Row="1" Margin="10">
             <TextBlock Text="Сортировка" FontSize="17" Margin="0 0 0 5" HorizontalAlignment="Left"/>
             <ComboBox Name="cbSort" Width="150" FontSize="15" Margin="0 0 0 10" HorizontalAlignment="Left" SelectionChanged="cbFilter_SelectionChanged">
                 <ComboBoxItem>Отсутствует</ComboBoxItem>
@@ -35,7 +38,7 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Name="spSize" Margin="20"/>
-        <ListView Grid.Column="1" Name="lvOrders">
+        <ListView Grid.Column="1" Grid.Row="1" Name="lvOrders">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderThickness="1" BorderBrush="Black" Margin="0 5 0 5">
@@ -73,6 +76,6 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Grid.Row="1" Name="btnBack" Content="Назад" Template="{StaticResource btnTemplate}" VerticalAlignment="Center" Margin="10" Click="btnBack_Click"/>
+        <Button Grid.Row="2" Name="btnBack" Content="Назад" Template="{StaticResource btnTemplate}" VerticalAlignment="Center" Margin="10" Click="btnBack_Click"/>
     </Grid>
 </Page>
