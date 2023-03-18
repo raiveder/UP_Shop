@@ -18,7 +18,7 @@ namespace ShopTest
         }
 
         [TestMethod]
-        public void AvaliablePeriods_NullResultWorkTimeLessThanDuration()
+        public void AvaliablePeriods_NullResultWorkTimeLessThanConsultationTime()
         {
             TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(10, 0, 0), new TimeSpan(15, 0, 0), new TimeSpan(15, 30, 0) };
             int[] durations = new int[] { 30, 30, 50 };
@@ -113,9 +113,9 @@ namespace ShopTest
             int[] durations = new int[] { 30, 30, 50 };
             TimeSpan beginWorkingTime = new TimeSpan(8, 0, 0);
             TimeSpan endWorkingTime = new TimeSpan(18, 0, 0);
-            int consultationTime = 40;
+            int consultationTime = 70;
 
-            string expected = "8:0-8:40";
+            string expected = "8:0-9:10";
             Assert.AreEqual(expected, Calculations.AvaliablePeriods(startTimes, durations, beginWorkingTime, endWorkingTime, consultationTime)[0]);
         }
 
