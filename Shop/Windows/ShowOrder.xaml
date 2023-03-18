@@ -9,7 +9,7 @@
         MinWidth="900"
         MaxHeight="1000"
         MaxWidth="1200"
-        Title="Оформление заказа" Height="550" Width="1000" Icon="/Resources/icon.ico" SizeToContent="Height" WindowStartupLocation="CenterScreen">
+        Title="ООО «Пиши-стирай»" Height="550" Width="1000" Icon="/Resources/icon.ico" SizeToContent="Height" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>

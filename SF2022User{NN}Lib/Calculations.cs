@@ -13,9 +13,10 @@ namespace SF2022User_NN_Lib
         /// <param name="endWorkingTime">Время окончания работы менеджера</param>
         /// <param name="consultationTime">Стандартное время работы</param>
         /// <returns>Строка со списком свободных промежутков времени</returns>
-        public static string[] AvaliablePeriods(TimeSpan[] startTimes, int[] durations, TimeSpan beginWorkingTime, TimeSpan endWorkingTime, int consultationTime)
+        public static string[] AvaliablePeriods(TimeSpan[] startTimes, int[] durations, TimeSpan beginWorkingTime,
+            TimeSpan endWorkingTime, int consultationTime)
         {
-            if (beginWorkingTime > endWorkingTime)
+            if (beginWorkingTime >= endWorkingTime || beginWorkingTime.Add(new TimeSpan(0, consultationTime, 0)) > endWorkingTime)
             {
                 return null;
             }
@@ -50,7 +51,7 @@ namespace SF2022User_NN_Lib
                 }
             }
 
-            return times;
+            return times.Length == 0 ? null : times;
         }
     }
 }

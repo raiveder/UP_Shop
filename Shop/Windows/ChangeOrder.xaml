@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Shop"
         mc:Ignorable="d"
-        Title="Изменение заказа" Height="350" Width="500" Icon="/Resources/icon.ico">
+        Title="ООО «Пиши-стирай»" Height="350" Width="500" Icon="/Resources/icon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -15,7 +15,7 @@
 
         <TextBlock Text="Изменение заказа" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="DemiBold"/>
 
-        <TextBlock Grid.Row="1" Name="tbOrder" FontSize="25" FontWeight="DemiBold" HorizontalAlignment="Center" Margin="20"/>
+        <TextBlock Grid.Row="1" Name="tbOrder" FontSize="25" FontWeight="DemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">

@@ -6,25 +6,37 @@ namespace ShopTest
     public class UnitTests
     {
         [TestMethod]
-        public void AvaliablePeriods_NotNullResult()
+        public void AvaliablePeriods_NullResultEndWorkTimeLessThanBeginWorkTime()
+        {
+            TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(10, 0, 0), new TimeSpan(15, 0, 0), new TimeSpan(15, 30, 0) };
+            int[] durations = new int[] { 30, 30, 50 };
+            TimeSpan beginWorkingTime = new TimeSpan(9, 0, 0);
+            TimeSpan endWorkingTime = new TimeSpan(8, 30, 0);
+            int consultationTime = 30;
+
+            Assert.IsNull(Calculations.AvaliablePeriods(startTimes, durations, beginWorkingTime, endWorkingTime, consultationTime));
+        }
+
+        [TestMethod]
+        public void AvaliablePeriods_NullResultWorkTimeLessThanDuration()
         {
             TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(10, 0, 0), new TimeSpan(15, 0, 0), new TimeSpan(15, 30, 0) };
             int[] durations = new int[] { 30, 30, 50 };
             TimeSpan beginWorkingTime = new TimeSpan(8, 0, 0);
-            TimeSpan endWorkingTime = new TimeSpan(18, 0, 0);
-            int consultationTime = 30;
+            TimeSpan endWorkingTime = new TimeSpan(8, 40, 0);
+            int consultationTime = 50;
 
-            Assert.IsNotNull(Calculations.AvaliablePeriods(startTimes, durations, beginWorkingTime, endWorkingTime, consultationTime));
+            Assert.IsNull(Calculations.AvaliablePeriods(startTimes, durations, beginWorkingTime, endWorkingTime, consultationTime));
         }
 
         [TestMethod]
-        public void AvaliablePeriods_NullResult()
+        public void AvaliablePeriods_NullResultAllWorkTimeIsBusy()
         {
-            TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(10, 0, 0), new TimeSpan(15, 0, 0), new TimeSpan(15, 30, 0) };
-            int[] durations = new int[] { 30, 30, 50 };
-            TimeSpan beginWorkingTime = new TimeSpan(18, 0, 0);
-            TimeSpan endWorkingTime = new TimeSpan(8, 0, 0);
-            int consultationTime = 30;
+            TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(10, 0, 0), new TimeSpan(8, 0, 0), new TimeSpan(15, 30, 0) };
+            int[] durations = new int[] { 40, 30, 50 };
+            TimeSpan beginWorkingTime = new TimeSpan(8, 0, 0);
+            TimeSpan endWorkingTime = new TimeSpan(8, 40, 0);
+            int consultationTime = 40;
 
             Assert.IsNull(Calculations.AvaliablePeriods(startTimes, durations, beginWorkingTime, endWorkingTime, consultationTime));
         }
@@ -91,19 +103,6 @@ namespace ShopTest
             int consultationTime = 50;
 
             int expected = 8;
-            Assert.AreEqual(expected, Calculations.AvaliablePeriods(startTimes, durations, beginWorkingTime, endWorkingTime, consultationTime).Length);
-        }
-
-        [TestMethod]
-        public void AvaliablePeriods_EqualCountPeriodsDuration60()
-        {
-            TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(10, 0, 0), new TimeSpan(15, 0, 0), new TimeSpan(15, 30, 0) };
-            int[] durations = new int[] { 30, 30, 50 };
-            TimeSpan beginWorkingTime = new TimeSpan(8, 0, 0);
-            TimeSpan endWorkingTime = new TimeSpan(18, 0, 0);
-            int consultationTime = 60;
-
-            int expected = 7;
             Assert.AreEqual(expected, Calculations.AvaliablePeriods(startTimes, durations, beginWorkingTime, endWorkingTime, consultationTime).Length);
         }
 

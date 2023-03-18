@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Margin="10">
-            <Image Source="Resources\logo.png" Height="80" HorizontalAlignment="Left"/>
+            <Image Source="\Resources\logo.png" Height="80" HorizontalAlignment="Left"/>
             <TextBlock Text="ООО «Пиши-стирай»" FontSize="30" VerticalAlignment="Center" Margin="10"/>
         </StackPanel>
 
