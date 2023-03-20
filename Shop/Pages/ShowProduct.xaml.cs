@@ -125,6 +125,13 @@ namespace Shop
                 return;
             }
 
+            MessageBoxResult result = MessageBox.Show("Вы действительно хотите удалить товар?", "Удаление товара", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result != MessageBoxResult.OK)
+            {
+                return;
+            }
+
             Product product = (Product)lvProduct.SelectedItem;
 
             OrderProduct order = Base.Entities.OrderProduct.FirstOrDefault(x => x.Product == product.ProductArticleNumber);
