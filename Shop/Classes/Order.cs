@@ -100,5 +100,20 @@ namespace Shop
                 return Visibility.Visible;
             }
         }
+
+        public string Composition
+        {
+            get
+            {
+                string text = null;
+
+                foreach (OrderProduct item in Base.Entities.OrderProduct.Where(x => x.OrderID == OrderID))
+                {
+                    text += item.Product1.ProductArticleNumber + ", " + item.Product1.ProductName + "\n";
+                }
+
+                return text.Substring(0, text.Length - 1);
+            }
+        }
     }
 }

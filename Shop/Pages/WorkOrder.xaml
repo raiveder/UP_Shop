@@ -23,13 +23,13 @@
 
         <StackPanel Grid.Row="1" Margin="10">
             <TextBlock Text="Сортировка" FontSize="17" Margin="0 0 0 5" HorizontalAlignment="Left"/>
-            <ComboBox Name="cbSort" Width="150" FontSize="15" Margin="0 0 0 10" HorizontalAlignment="Left" SelectionChanged="cbFilter_SelectionChanged">
+            <ComboBox Name="cbSort" Width="150" FontSize="15" Margin="0 0 0 10" HorizontalAlignment="Left" SelectionChanged="cbFilter_SelectionChanged" Cursor="Hand">
                 <ComboBoxItem>Отсутствует</ComboBoxItem>
                 <ComboBoxItem>По возрастанию</ComboBoxItem>
                 <ComboBoxItem>По убыванию</ComboBoxItem>
             </ComboBox>
             <TextBlock Text="Фильтрация" FontSize="17" Margin="0 0 0 5" HorizontalAlignment="Left"/>
-            <ComboBox Name="cbFilter" Width="150" FontSize="15" Margin="0 0 0 0" HorizontalAlignment="Left" SelectionChanged="cbFilter_SelectionChanged">
+            <ComboBox Name="cbFilter" Width="150" FontSize="15" Margin="0 0 0 0" HorizontalAlignment="Left" SelectionChanged="cbFilter_SelectionChanged" Cursor="Hand">
                 <ComboBoxItem>Все диапазоны</ComboBoxItem>
                 <ComboBoxItem>0-10%</ComboBoxItem>
                 <ComboBoxItem>11-14%</ComboBoxItem>
@@ -37,12 +37,12 @@
             </ComboBox>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Name="spSize" Margin="20"/>
+        <StackPanel Grid.Column="1" Name="spSize" Margin="30"/>
         <ListView Grid.Column="1" Grid.Row="1" Name="lvOrders">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderThickness="1" BorderBrush="Black" Margin="0 5 0 5">
-                        <Grid Width="{Binding ActualWidth, ElementName=spSize}" Background="{Binding BackgroundColor}">
+                    <Border BorderThickness="1" BorderBrush="Black" Background="{Binding BackgroundColor}" Margin="0 5 0 5">
+                        <Grid Width="{Binding ActualWidth, ElementName=spSize}" Margin="10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition/>
@@ -52,7 +52,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Text="{Binding OrderID, StringFormat=Заказ №{0}}" FontSize="15" FontWeight="DemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Uid="{Binding OrderID}" Background="{Binding BackgroundColor}" FontSize="15" VerticalAlignment="Center" TextWrapping="Wrap" Loaded="tbComposition_Loaded"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Composition}" Background="{Binding BackgroundColor}" FontSize="13" VerticalAlignment="Center" TextWrapping="Wrap"/>
                             <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <TextBlock FontSize="13">
                                     <Run Text="Дата оформления:"/>

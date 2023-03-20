@@ -19,19 +19,6 @@ namespace Shop
             cbFilter.SelectedIndex = 0;
         }
 
-        private void tbComposition_Loaded(object sender, RoutedEventArgs e)
-        {
-            TextBlock tb = (TextBlock)sender;
-            int id = Convert.ToInt32(tb.Uid);
-
-            foreach (OrderProduct item in Base.Entities.OrderProduct.Where(x => x.OrderID == id))
-            {
-                tb.Text += item.Product1.ProductArticleNumber + ", " + item.Product1.ProductName + "\n";
-            }
-
-            tb.Text = tb.Text.Substring(0, tb.Text.Length - 1);
-        }
-
         private void tbClient_Loaded(object sender, RoutedEventArgs e)
         {
             TextBlock tb = (TextBlock)sender;

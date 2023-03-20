@@ -5,6 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Shop"
         mc:Ignorable="d"
+        MinHeight="330"
+        MinWidth="450"
+        MaxWidth="700"
+        MaxHeight="450"
         Title="ООО «Пиши-стирай»" Height="350" Width="500" Icon="/Resources/icon.ico">
     <Grid>
         <Grid.RowDefinitions>
@@ -20,11 +24,11 @@
         <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" Margin="0 0 0 10" HorizontalAlignment="Right">
                 <TextBlock Text="Дата доставки" FontSize="20" Margin="0 0 10 0"/>
-                <DatePicker Name="dpDate" FontSize="20" Width="150"/>
+                <DatePicker Name="dpDate" FontSize="20" Width="150" Cursor="Hand"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Text="Статус" FontSize="20" Margin="0 0 10 0"/>
-                <ComboBox Name="cbStatus" Width="150" FontSize="20"/>
+                <ComboBox Name="cbStatus" Width="150" FontSize="20" Cursor="Hand"/>
             </StackPanel>
             <Button Name="btnSave" Template="{StaticResource btnTemplate}" Content="Сохранить" Margin="20 20 20 0" Click="btnSave_Click"/>
         </StackPanel>
