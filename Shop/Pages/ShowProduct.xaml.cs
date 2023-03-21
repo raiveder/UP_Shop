@@ -127,7 +127,7 @@ namespace Shop
 
             MessageBoxResult result = MessageBox.Show("Вы действительно хотите удалить товар?", "Удаление товара", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            if (result != MessageBoxResult.OK)
+            if (result != MessageBoxResult.Yes)
             {
                 return;
             }
